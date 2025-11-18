@@ -1,14 +1,13 @@
 inputs_def:
   - handle: imageURL
+    description: "%url-of-the-image-to-remove-background-from%"
     json_schema:
       type: string
-    description: "URL of the image to remove background from"
     nullable: false
 
 outputs_def:
   - handle: request_id
-    description: "The request ID returned by the API for tracking the background
-      removal job"
+    description: "%the-request-id-returned-by-the-api-for-tracking-the-background-r%"
     json_schema:
       type: string
 
@@ -18,8 +17,7 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Submit Background Removal"
+title: "%submit-background-removal%"
 icon: ":carbon:image-search:"
-description: "Submits an image to the background removal API and returns a
-  request ID for tracking the job status"
+description: "%submits-an-image-to-the-background-removal-api-and-returns-a-req%"
 private: true

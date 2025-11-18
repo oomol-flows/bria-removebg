@@ -1,19 +1,19 @@
 inputs_def:
   - handle: request_id
-    description: The request ID obtained from the submit background removal task
+    description: "%the-request-id-obtained-from-the-submit-background-removal-task%"
     json_schema:
       type: string
     nullable: false
   - group: Optional
     collapsed: true
   - handle: max_retries
-    description: "Maximum number of polling attempts (default: 30)"
+    description: "%maximum-number-of-polling-attempts-default-30%"
     json_schema:
       type: number
     value:
     nullable: true
   - handle: retry_interval
-    description: "Interval between polling attempts in seconds (default: 2)"
+    description: "%interval-between-polling-attempts-in-seconds-default-2%"
     json_schema:
       type: number
     value:
@@ -21,11 +21,11 @@ inputs_def:
 
 outputs_def:
   - handle: result_url
-    description: "URL of the processed image with background removed"
+    description: "%url-of-the-processed-image-with-background-removed%"
     json_schema:
       type: string
   - handle: status
-    description: "Final status of the background removal job"
+    description: "%final-status-of-the-background-removal-job%"
     json_schema:
       type: string
 
@@ -35,8 +35,7 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Get Background Removal Result"
+title: "%get-background-removal-result%"
 icon: ":carbon:checkmark-outline:"
-description: "Polls the background removal API to retrieve the processed image
-  URL once the job is complete"
+description: "%polls-the-background-removal-api-to-retrieve-the-processed-image%"
 private: true

@@ -1,5 +1,5 @@
-title: Url Image Background Removal
-description: "Remove background from an image URL and return the processed image URL."
+title: "%url-image-background-removal%"
+description: "%remove-background-from-an-image-url-and-return-the-processed-ima%"
 nodes:
   - node_id: submit#1
     task: self::submit-background-removal
@@ -27,7 +27,7 @@ nodes:
           - input_handle: retry_interval
 inputs_def:
   - handle: imageURL
-    description: URL of the image to remove background from
+    description: "%url-of-the-image-to-remove-background-from3%"
     json_schema:
       type: string
     value: https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConvert/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png
@@ -36,14 +36,14 @@ inputs_def:
   - group: Optional
     collapsed: false
   - handle: max_retries
-    description: "Maximum number of polling attempts (default: 30)"
+    description: "%maximum-number-of-polling-attempts-default-303%"
     json_schema:
       type: number
     value:
     nullable: true
     executor_name: python
   - handle: retry_interval
-    description: "Interval between polling attempts in seconds (default: 2)"
+    description: "%interval-between-polling-attempts-in-seconds-default-23%"
     json_schema:
       type: number
     value:
@@ -51,10 +51,10 @@ inputs_def:
     executor_name: python
 outputs_def:
   - handle: result_url
+    description: "%url-of-the-processed-image-with-background-removed2%"
     json_schema:
       type: string
     nullable: false
-    description: URL of the processed image with background removed
     executor_name: python
 outputs_from:
   - handle: result_url

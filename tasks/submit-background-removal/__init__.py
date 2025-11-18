@@ -2,9 +2,8 @@
 import typing
 class Inputs(typing.TypedDict):
     imageURL: str
-
 class Outputs(typing.TypedDict):
-    request_id: str
+    request_id: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

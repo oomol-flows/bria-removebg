@@ -1,5 +1,5 @@
-title: File Image Background Removal
-description: "Remove background from a local image file and save the processed result."
+title: "%file-image-background-removal%"
+description: "%remove-background-from-a-local-image-file-and-save-the-processed%"
 nodes:
   - node_id: submit#1
     task: self::submit-background-removal
@@ -29,14 +29,14 @@ nodes:
         from_flow:
           - input_handle: retry_interval
   - node_id: upload-to-cloud#1
-    title: "上传文件到云端 #1"
+    title: "%1%"
     inputs_from:
       - handle: file
         from_flow:
           - input_handle: image_file
     task: upload-to-cloud::upload-to-cloud
   - node_id: file-downloader#1
-    title: "下载文件 #1"
+    title: "%12%"
     inputs_from:
       - handle: url
         from_node:
@@ -74,7 +74,7 @@ nodes:
     subflow: downloader::file-downloader
 inputs_def:
   - handle: image_file
-    description: URL of the image to remove background from
+    description: "%url-of-the-image-to-remove-background-from2%"
     json_schema:
       type: string
       ui:widget: file
@@ -86,18 +86,18 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: save
-    nullable: true
     value:
+    nullable: true
     executor_name: python
   - handle: max_retries
-    description: "Maximum number of polling attempts (default: 30)"
+    description: "%maximum-number-of-polling-attempts-default-302%"
     json_schema:
       type: number
     value:
     nullable: true
     executor_name: python
   - handle: retry_interval
-    description: "Interval between polling attempts in seconds (default: 2)"
+    description: "%interval-between-polling-attempts-in-seconds-default-22%"
     json_schema:
       type: number
     value:
@@ -105,11 +105,11 @@ inputs_def:
     executor_name: python
 outputs_def:
   - handle: saved_path
+    description: "%path-of-the-successfully-downloaded-file%"
     json_schema:
       type: string
       ui:widget: save
     nullable: false
-    description: Path of the successfully downloaded file
     executor_name: python
 outputs_from:
   - handle: saved_path
