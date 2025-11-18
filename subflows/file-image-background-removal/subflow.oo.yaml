@@ -1,9 +1,5 @@
 title: File Image Background Removal
-description: "This subflow removes the background from a local image file. It
-  uploads the file to cloud storage, submits it to a background removal service,
-  polls for the processing result, and downloads the processed image to a
-  specified location. Perfect for batch processing local images or integrating
-  background removal into file-based workflows."
+description: "Remove background from a local image file and save the processed result."
 nodes:
   - node_id: submit#1
     task: self::submit-background-removal

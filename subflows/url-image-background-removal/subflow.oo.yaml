@@ -1,9 +1,5 @@
 title: Url Image Background Removal
-description: "This subflow removes the background from an image provided via
-  URL. It submits the image URL to a background removal service and polls for
-  the processing result, returning the URL of the processed image with the
-  background removed. Ideal for automated image processing workflows that work
-  with web-hosted images."
+description: "Remove background from an image URL and return the processed image URL."
 nodes:
   - node_id: submit#1
     task: self::submit-background-removal
@@ -31,27 +27,27 @@ nodes:
           - input_handle: retry_interval
 inputs_def:
   - handle: imageURL
+    description: URL of the image to remove background from
     json_schema:
       type: string
-    nullable: false
-    description: URL of the image to remove background from
     value: https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConvert/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png
+    nullable: false
     executor_name: python
   - group: Optional
-    collapsed: true
+    collapsed: false
   - handle: max_retries
+    description: "Maximum number of polling attempts (default: 30)"
     json_schema:
       type: number
-    nullable: true
-    description: "Maximum number of polling attempts (default: 30)"
     value:
+    nullable: true
     executor_name: python
   - handle: retry_interval
+    description: "Interval between polling attempts in seconds (default: 2)"
     json_schema:
       type: number
-    nullable: true
-    description: "Interval between polling attempts in seconds (default: 2)"
     value:
+    nullable: true
     executor_name: python
 outputs_def:
   - handle: result_url
