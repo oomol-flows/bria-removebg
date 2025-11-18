@@ -1,0 +1,67 @@
+title: Url Image Background Removal
+description: "This subflow removes the background from an image provided via
+  URL. It submits the image URL to a background removal service and polls for
+  the processing result, returning the URL of the processed image with the
+  background removed. Ideal for automated image processing workflows that work
+  with web-hosted images."
+nodes:
+  - node_id: submit#1
+    task: self::submit-background-removal
+    inputs_from:
+      - handle: imageURL
+        value: "https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConve\
+          rt/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png"
+        from_flow:
+          - input_handle: imageURL
+
+  - node_id: get-result#1
+    task: self::get-background-removal-result
+    inputs_from:
+      - handle: request_id
+        from_node:
+          - node_id: submit#1
+            output_handle: request_id
+      - handle: max_retries
+        value: 60
+        from_flow:
+          - input_handle: max_retries
+      - handle: retry_interval
+        value: 2
+        from_flow:
+          - input_handle: retry_interval
+inputs_def:
+  - handle: imageURL
+    json_schema:
+      type: string
+    nullable: false
+    description: URL of the image to remove background from
+    value: https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConvert/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png
+    executor_name: python
+  - group: Optional
+    collapsed: true
+  - handle: max_retries
+    json_schema:
+      type: number
+    nullable: true
+    description: "Maximum number of polling attempts (default: 30)"
+    value:
+    executor_name: python
+  - handle: retry_interval
+    json_schema:
+      type: number
+    nullable: true
+    description: "Interval between polling attempts in seconds (default: 2)"
+    value:
+    executor_name: python
+outputs_def:
+  - handle: result_url
+    json_schema:
+      type: string
+    nullable: false
+    description: URL of the processed image with background removed
+    executor_name: python
+outputs_from:
+  - handle: result_url
+    from_node:
+      - node_id: get-result#1
+        output_handle: result_url

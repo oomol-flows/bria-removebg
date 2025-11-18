@@ -1,0 +1,75 @@
+{
+  "nodes": {
+    "submit#1": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "get-result#1": {
+      "rfNode": {
+        "position": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    "upload-to-cloud#1": {
+      "contentWidth": 350,
+      "rfNode": {
+        "position": {
+          "x": -194.29346090472924,
+          "y": -310.4527689281514
+        }
+      }
+    },
+    "file-downloader#1": {
+      "rfNode": {
+        "position": {
+          "x": 1114.1781816791765,
+          "y": 203.28181538015411
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Strategy": true,
+            "Connection": true
+          }
+        },
+        "outputs": {
+          "groupCollapsed": {
+            "Events": true
+          }
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": -648.1989976963227,
+          "y": -129.1466518782243
+        }
+      },
+      "sections": {
+        "subflowInput": {
+          "groupCollapsed": {
+            "Optional": true
+          }
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 1399.2779703345686,
+          "y": -48.146651878224304
+        }
+      }
+    }
+  }
+}

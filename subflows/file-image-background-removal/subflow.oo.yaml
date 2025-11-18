@@ -1,0 +1,122 @@
+title: File Image Background Removal
+description: "This subflow removes the background from a local image file. It
+  uploads the file to cloud storage, submits it to a background removal service,
+  polls for the processing result, and downloads the processed image to a
+  specified location. Perfect for batch processing local images or integrating
+  background removal into file-based workflows."
+nodes:
+  - node_id: submit#1
+    task: self::submit-background-removal
+    inputs_from:
+      - handle: imageURL
+        value: "https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConve\
+          rt/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png"
+        from_flow:
+          []
+        from_node:
+          - node_id: upload-to-cloud#1
+            output_handle: remote_url
+
+  - node_id: get-result#1
+    task: self::get-background-removal-result
+    inputs_from:
+      - handle: request_id
+        from_node:
+          - node_id: submit#1
+            output_handle: request_id
+      - handle: max_retries
+        value: 60
+        from_flow:
+          - input_handle: max_retries
+      - handle: retry_interval
+        value: 2
+        from_flow:
+          - input_handle: retry_interval
+  - node_id: upload-to-cloud#1
+    title: "上传文件到云端 #1"
+    inputs_from:
+      - handle: file
+        from_flow:
+          - input_handle: image_file
+    task: upload-to-cloud::upload-to-cloud
+  - node_id: file-downloader#1
+    title: "下载文件 #1"
+    inputs_from:
+      - handle: url
+        from_node:
+          - node_id: get-result#1
+            output_handle: result_url
+      - handle: saved_path
+        value: null
+        from_flow:
+          - input_handle: saved_path
+      - handle: if_existing
+        value: override
+      - handle: threads_count
+        value: 1
+      - handle: headers
+        value:
+          {}
+      - handle: cookies
+        value:
+          {}
+      - handle: window_width
+        value: 7
+      - handle: failure_ladder
+        value:
+          - 5
+      - handle: min_segment_length
+        value: 1048576
+      - handle: once_fetch_size
+        value: 16384
+      - handle: timeout
+        value: 30
+      - handle: retry_times
+        value: 0
+      - handle: retry_sleep
+        value: 0
+    subflow: downloader::file-downloader
+inputs_def:
+  - handle: image_file
+    description: URL of the image to remove background from
+    json_schema:
+      type: string
+      ui:widget: file
+    nullable: false
+    executor_name: python
+  - group: Optional
+    collapsed: true
+  - handle: saved_path
+    json_schema:
+      type: string
+      ui:widget: save
+    nullable: true
+    value:
+    executor_name: python
+  - handle: max_retries
+    description: "Maximum number of polling attempts (default: 30)"
+    json_schema:
+      type: number
+    value:
+    nullable: true
+    executor_name: python
+  - handle: retry_interval
+    description: "Interval between polling attempts in seconds (default: 2)"
+    json_schema:
+      type: number
+    value:
+    nullable: true
+    executor_name: python
+outputs_def:
+  - handle: saved_path
+    json_schema:
+      type: string
+      ui:widget: save
+    nullable: false
+    description: Path of the successfully downloaded file
+    executor_name: python
+outputs_from:
+  - handle: saved_path
+    from_node:
+      - node_id: file-downloader#1
+        output_handle: saved_path
