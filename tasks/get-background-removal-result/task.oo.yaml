@@ -5,18 +5,18 @@ inputs_def:
       type: string
     nullable: false
   - group: Optional
-    collapsed: true
+    collapsed: false
   - handle: max_retries
     description: "%maximum-number-of-polling-attempts-default-30%"
     json_schema:
       type: number
-    value:
+    value: 30
     nullable: true
   - handle: retry_interval
     description: "%interval-between-polling-attempts-in-seconds-default-2%"
     json_schema:
       type: number
-    value:
+    value: 2
     nullable: true
 
 outputs_def:

@@ -1,1 +1,13 @@
-nodes: []
+nodes:
+  - node_id: file-image-background-removal#1
+    title: "File Image Background Removal #1"
+    inputs_from:
+      - handle: image_file
+        value: /oomol-driver/oomol-storage/ooimage.jpg
+      - handle: saved_path
+        value: null
+      - handle: max_retries
+        value: null
+      - handle: retry_interval
+        value: null
+    subflow: self::file-image-background-removal

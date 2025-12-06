@@ -25,8 +25,8 @@ async def main(params: Inputs, context: Context) -> Outputs:
         Dictionary containing the result_url and status
     """
     request_id = params["request_id"]
-    max_retries = params.get("max_retries", 30)
-    retry_interval = params.get("retry_interval", 2)
+    max_retries = params.get("max_retries", 30) or 30
+    retry_interval = params.get("retry_interval", 2) or 2
 
     url = f"https://fusion-api.oomol.com/v1/fal-remove-background/result/{request_id}"
 
