@@ -30,6 +30,7 @@ inputs_def:
     description: "%url-of-the-image-to-remove-background-from3%"
     json_schema:
       type: string
+      format: uri
     value: https://conversion-demo-prod-us.oss-us-west-1.aliyuncs.com/dynamicConvert/94acb8be1e464a9cb19ac9730bccab67/jsonOutput/sheet-12-0-color.png
     nullable: false
     executor_name: python
