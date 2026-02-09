@@ -3,9 +3,9 @@ nodes:
     title: "File Image Background Removal #1"
     inputs_from:
       - handle: image_file
-        value: /oomol-driver/oomol-storage/ooimage.jpg
+        value: /oomol-driver/oomol-storage/service/background-remove/4aacaa35-db7c-4dd4-b520-b3a78687ae55-1.png
       - handle: saved_path
-        value: null
+        value: /oomol-driver/oomol-storage/service/background-remove/background-remove3.png
       - handle: max_retries
         value: null
       - handle: retry_interval
