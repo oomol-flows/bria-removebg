@@ -82,13 +82,6 @@ inputs_def:
     executor_name: python
   - group: Optional
     collapsed: true
-  - handle: saved_path
-    json_schema:
-      type: string
-      ui:widget: save
-    value:
-    nullable: true
-    executor_name: python
   - handle: max_retries
     description: "%maximum-number-of-polling-attempts-default-302%"
     json_schema:
@@ -100,6 +93,13 @@ inputs_def:
     description: "%interval-between-polling-attempts-in-seconds-default-22%"
     json_schema:
       type: number
+    value:
+    nullable: true
+    executor_name: python
+  - handle: saved_path
+    json_schema:
+      type: string
+      ui:widget: save
     value:
     nullable: true
     executor_name: python

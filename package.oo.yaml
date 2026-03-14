@@ -1,9 +1,9 @@
-version: 0.0.4
+version: 0.0.5
 name: bria_background_removal
 displayName: "%display-name%"
 description: "%description%"
 repository: https://github.com/oomol-flows/bria-removebg.git
-releaseNotes: "fix: add params type"
+releaseNotes: "fix: output file not url"
 scripts:
   bootstrap: |
     npm install
