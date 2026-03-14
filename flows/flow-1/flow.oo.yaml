@@ -11,3 +11,13 @@ nodes:
       - handle: retry_interval
         value: null
     subflow: self::file-image-background-removal
+  - node_id: url-image-background-removal#1
+    title: "Url Image Background Removal #1"
+    inputs_from:
+      - handle: imageURL
+        value: https://cloud-storage.oomol.com/users/019343aa-c609-7498-b541-906f2860a1e2/chat-uploads/2026-03-14/bhilrlyqo9ba-WFzP3LncgAYyIavJpxFb4_jHAXKYGG.png
+      - handle: max_retries
+        value: null
+      - handle: retry_interval
+        value: null
+    subflow: self::url-image-background-removal
